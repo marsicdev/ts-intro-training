@@ -87,6 +87,10 @@ export const setOnCreateMovieListener = (action: CreateAction, onClick: OnClickF
         })
 }
 
+export const displayRandom = (random: string) => {
+    document.querySelector<HTMLDivElement>(DOMSelectors.errorDiv)!.textContent = random
+}
+
 export {
     displayListItem,
     displayTotalLength,

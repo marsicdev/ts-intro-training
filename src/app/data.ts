@@ -43,3 +43,21 @@ export function getTotalLength() {
 
     return data.totalMoviesLength
 }
+
+type RandomUser = {
+    gender: 'male' | 'female' | 'other'
+}
+
+type RandomResponse = {
+    results: RandomUser[]
+    info: any
+}
+
+export const fetchRandom = async (): Promise<any> => {
+    try {
+        const res = await fetch('https://api.randomuser.me')
+        const data: RandomResponse = await res.json()
+
+        return data.results[0].gender
+    } catch (error) {}
+}

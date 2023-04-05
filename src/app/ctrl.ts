@@ -47,7 +47,15 @@ const ctrlAddMovieItem = () => {
     ctrlUpdateTotalLength()
 }
 
-export const init = () => {
+export const init = async () => {
     console.log('App has started')
+    // data.fetchRandom()
+    //     .then((random) => {
+    //         // UI.displayRandom(random)
+    //  })
+
+    const random = await data.fetchRandom()
+    UI.displayRandom(random)
+
     setupEventListeners()
 }
