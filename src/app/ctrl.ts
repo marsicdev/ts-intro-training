@@ -2,17 +2,8 @@ import * as data from './data'
 import * as UI from './ui'
 
 const setupEventListeners = () => {
-    const DOM = UI.getDOMStrings()
-
-    document
-        .querySelector(DOM.addMovieButton)!
-        .addEventListener('click', ctrlAddMovieItem)
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            ctrlAddMovieItem()
-        }
-    })
+    UI.setOnCreateMovieListener('click', ctrlAddMovieItem)
+    UI.setOnCreateMovieListener('keydown', ctrlAddMovieItem)
 }
 
 function ctrlUpdateTotalLength() {

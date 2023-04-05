@@ -69,14 +69,27 @@ function displayTotalLength(tLength: string) {
     document.querySelector(DOMSelectors.totalLengthSpan)!.textContent = tLength ?? '-'
 }
 
-function getDOMStrings() {
-    return DOMSelectors
+type CreateAction = 'click' | 'keydown'
+type OnClickFn = () => void
+
+export const setOnCreateMovieListener = (action: CreateAction, onClick: OnClickFn) => {
+    document
+        .querySelector(DOMSelectors.addMovieButton)!
+        .addEventListener(action, (event) => {
+            if (action === 'keydown' && event instanceof KeyboardEvent) {
+                if (event.key === 'Enter') {
+                    onClick()
+                }
+                return
+            }
+
+            onClick()
+        })
 }
 
 export {
     displayListItem,
     displayTotalLength,
-    getDOMStrings,
     collectFormData as getInput,
     clearInputs,
     displayError,
